@@ -20,7 +20,7 @@
                     <li class="list-group-item" v-for="story in storiesBy('Blogger')">
                         {{ story.writer }} : "{{ story.plot }}"
                         <button v-show="!story.voted" @click="upvote" class="btn btn-default">Upvote</button>
-                        <button class="btn btn-primary">Favorite</button>
+                        <button v-show="!isFavorite"  @click="markAsFavorite" class="btn btn-primary">Favorite</button>
                     </li>
                 </ul>
             </div>
@@ -60,7 +60,6 @@
                 { writer : 'Social Media Writer', plot: 'Qui elit dolor do non deserunt eu. Commodo id cupidatat eu et sunt.'}
                 ],
                 query: ' ',
-                props: ['story']
             }
         },
         props: ['story', 'favorite'],
@@ -74,8 +73,7 @@
                 this.story.upvotes++;
                 this.story.voted = true;
             },
-            updateFavorite() {
-                //'update' is just the name of the custom event
+            markAsFavorite() {
                 this.$emit('update', this.story);
             }
         },
@@ -85,10 +83,11 @@
                 return this.stories.filter(function(story) {
                     return story.plot.includes(query);
                 });
+            },
+            isFavorite() {
+                return this.story === this.favorite;
             }
         }
     }
-
-
 
 </script>

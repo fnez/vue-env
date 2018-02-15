@@ -20,7 +20,7 @@
         </div>
         
         <!-- STORY COMPONENT -->
-        <story></story>
+        <story :favorite="favorite" @update="updateFavorite"></story>
 
         <div>
           <pre>{{$data}}</pre>
@@ -52,7 +52,6 @@
               return _.orderBy(this.people, 'age')
             },
             updateFavorite(story) {
-              //update the empty favorite object with the child component
               this.favorite = story;
             }
           },
