@@ -20,7 +20,7 @@
         </div>
         
         <!-- STORY COMPONENT -->
-        <story :story="story" :favorite="favorite" @update="updateFavorite"></story>
+        <story></story>
 
         <div>
           <pre>{{$data}}</pre>
